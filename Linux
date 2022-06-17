@@ -1,15 +1,17 @@
----> Create an file named file.txt, create an user sampleuser. Change the ownership of the file to sampleuser
+1. Create an file named file.txt, create an user sampleuser. Change the ownership of the file to sampleuser
 
 touch file.txt 
 useradd sampleuser 
 chown sampleuser file.txt 
 
----> Switch to sample user in terminal then change the permission of the file.txt to the user and group as rwx
+----------------------------------------------------------------------------------------------------------------------
+2. Switch to sample user in terminal then change the permission of the file.txt to the user and group as rwx
 
 su sampleuser 
 chmod 770 file.txt
 
----> Increase the open file limit
+----------------------------------------------------------------------------------------------------------------------
+3. Increase the open file limit
 
 Method 1:
 ulimit -n 65535
@@ -23,8 +25,8 @@ Open the /etc/security/limits.conf using
  Method 3 : Open /etc/sysctl.conf using
  vi /etc/sysctl.conf and add fs.file-max = 65535 
  
- 
----> Increase the swapsize by adding new swap storage
+ ---------------------------------------------------------------------------------------------------------------------
+4. Increase the swapsize by adding new swap storage
 
 To display mem and swap size use -> free command
 fallocate -l 1M /swapfile 
@@ -33,7 +35,10 @@ sudo mkswap /swapfile
 sudo swapon /swapfile 
 To verify again , use -> free command
 
----> Remove the swap storage
+----------------------------------------------------------------------------------------------------------------------
+5. Remove the swap storage
 
 sudo swapoff /swapfile 
 To check again use -> free command
+
+----------------------------------------------------------------------------------------------------------------------
