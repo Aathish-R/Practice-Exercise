@@ -1,0 +1,62 @@
+---> Create an docker volume named sampledata
+
+        docker volume create sampledata 
+        
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+---> Spin up an ubuntu docker container, mount the sampledata docker volume. Pass the env variable os=ubuntu to the docker container when bringing it up
+
+        docker run -d -it --name myubuntu --env OS=ubuntu -v sampledata:/sampledir ubuntu:focal 
+        
+------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Create an dir names /sampledir mount it to an nginx:1.19.0 docker container 
+
+        mkdir sampledir 
+        docker run -d -it --name mynginx -v /Users/hariv/sampledir:/var/www/html nginx 
+        
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Create an docker file to create an image with httpd2 server in it, on running the image as an container the server should start up
+
+                                            Dockerfile 
+                                            
+                                 FROM httpd:2.4 
+                                 COPY ./website/ /usr/local/apache2/htdocs/ 
+                                 
+                                 docker build -t myapache-docker-image . 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Create an container out of the image you created in earlier step expose the 80 port to the parent host 
+
+         docker run -d –name myapache-container-01 -p 81:80 myapache-docker-image 
+         To check go to localhost:81 
+         
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Create an bridge network and spin up two containers in the network one with the image you created
+
+        docker network create -d bridge mybridge-network 
+        
+        Connect the Running two containers into the network: 
+            docker network connect mybridge-network myapache-container-01 
+            docker network connect mybridge-network myapache-container-02 
+            
+        To check use docker network inspect mybridge-network 
+        
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Create an docker compose file with an nginx and an redis server both connected via an bridge network
+
+                                docker-compose-file
+                                
+                                version: '2.0' 
+                                services:
+                                 nginx: 
+                                 image: nginx:1.22.0-perl 
+                                 networks: 
+                                 - mybridge-network 
+                                 ports: 
+                                 - "82:80" 
+                                 redis: 
+                                 image: redis:alpine3.16 
+                                 ports: 
+                                 - "3000:6379" 
+                                 networks: 
+                                 - mybridge-network 
+                                networks: 
+                                 mybridge-network:
