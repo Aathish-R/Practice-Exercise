@@ -60,3 +60,40 @@
                                  - mybridge-network 
                                 networks: 
                                  mybridge-network:
+                                 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+                                               SCENARIO BASED EXERCISE
+                                               
+                                               
+a. Create a Ubuntu Instance In AWS and login to the ubuntu and install docker 
+
+b. Create a Dockerfile and build using 
+               docker build -t myubuntu-image . 
+               
+c. Create a public repo called LandingPage 
+
+d. git clone https://github.com/Aathish-R/LandingPage.git
+
+e. docker run -d -it --name container03 -p 80:80 -v /home/ubuntu/Files/LandingPage:/var/www/html myubuntu-image 
+
+f. pullscript.sh 
+                git pull 
+                
+g. crontab -l 
+                * */5 * * * /bin/sh /home/ubuntu/Files/LandingPage/pullscript.sh 
+                
+h. Public IP DNS : http://35.163.165.46/
+
+
+                                                   Dockerfile
+                                    
+                                                FROM ubuntu:latest
+                                                RUN apt-get -y update
+                                                RUN apt-get install -y apache2 
+                                                RUN apt-get install -y apache2-utils
+                                                EXPOSE 80
+                                                WORKDIR /var/www/html
+                                                COPY index.html /var/www/html/index.html
+                                                ENTRYPOINT ["/usr/sbin/apache2ctl"]
+                                                CMD ["-D","FOREGROUND"]                                    
