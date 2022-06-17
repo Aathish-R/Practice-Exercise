@@ -1,0 +1,17 @@
+version: '2.0'
+services:
+  nginx:
+    image: nginx:1.22.0-perl
+    networks:
+      - mybridge-network
+    ports:
+      - "82:80"
+  redis:
+    image: redis:alpine3.16
+    ports:
+      - "3000:6379"
+    networks:
+      - mybridge-network
+networks:
+  mybridge-network:
+    
