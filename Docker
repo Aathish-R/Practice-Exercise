@@ -83,7 +83,7 @@ f. pullscript.sh
 g. crontab -l 
                 * */5 * * * /bin/sh /home/ubuntu/Files/LandingPage/pullscript.sh 
                 
-h. Public IP DNS : http://35.163.165.46/
+h. Public IP DNS : http://34.222.76.5/
 
 
                                                    Dockerfile
