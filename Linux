@@ -1,0 +1,24 @@
+Create an file named file.txt, create an user sampleuser. Change the ownership of the file to sampleuser
+
+touch file.txt 
+useradd sampleuser 
+chown sampleuser file.txt 
+
+Switch to sample user in terminal then change the permission of the file.txt to the user and group as rwx
+
+su sampleuser 
+chmod 770 file.txt
+
+Increase the open file limit
+
+Method 1:
+ulimit -n 65535
+
+Method 2:
+Open the /etc/security/limits.conf using
+ vi /etc/security/limits.conf and add 
+ * soft nofile 65535 
+ * hard nofile 65535 
+ 
+ Method 3 : Open /etc/sysctl.conf using
+ vi /etc/sysctl.conf and add fs.file-max = 65535 
