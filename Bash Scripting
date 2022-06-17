@@ -1,4 +1,4 @@
----> Write an script that will read the file content.txt that contains the names,age,job title and print the value in this order “name(age) – jobtitle
+1. Write an script that will read the file content.txt that contains the names,age,job title and print the value in this order “name(age) – jobtitle
                                             Contents.txt file 
                                             Raj 30 Developer 
                                             Ram 25 Ops 
@@ -12,7 +12,7 @@
            
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
            
----> Write an script that will get the company name as arguments(command line arguments) and print their products by parsing the following json file
+2. Write an script that will get the company name as arguments(command line arguments) and print their products by parsing the following json file
                                             {
                                             “Ibm”: [“RedHat”,”Mainframe”,”IBM cloud”,”RHEL”],
                                             “google”: [“k8s”,”kaggle”,”firebase”],
@@ -30,7 +30,7 @@ Solution:
                 
  -------------------------------------------------------------------------------------------------------------------------------------------------------------
                 
----> Create an script that will calculate the sum of prime numbers between 0 to an given number(to be given as an argument) name it child.sh, create another script named 
+3. Create an script that will calculate the sum of prime numbers between 0 to an given number(to be given as an argument) name it child.sh, create another script named 
 parent.sh which check if the child script exists in current dir and if exists change permission to execute for current user and call the child script from the parent
 script passing the number as argument
 
@@ -84,7 +84,7 @@ Solution: Run parent.sh as ./parent.sh
                 echo "child.sh not exist in current directory"
             fi
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
----> Install the apache httpd server(centos preferred), and the home page should say “SoftwareAG”
+4. Install the apache httpd server(centos preferred), and the home page should say “SoftwareAG”
 
 Install apache using 
       sudo apt-get install apache2 
@@ -93,7 +93,7 @@ Check the status using
 Then go to /var/www/html and edit the index.html file to display SOFTWARE AG 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
----> Make the Https server an Linux systemd service and write an script to stop, start and restart the server via systemctl 
+5. Make the Https server an Linux systemd service and write an script to stop, start and restart the server via systemctl 
 
                                                       myownservice.sh 
                                                       
@@ -111,9 +111,4 @@ Then go to /var/www/html and edit the index.html file to display SOFTWARE AG
    Restart - sudo systemctl restart aathish 
    Status - sudo systemctl status aathish
    
-   ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-        
+   -----------------------------------------------------------------------------------------------------------------------------------------------------------------
