@@ -1,0 +1,119 @@
+---> Write an script that will read the file content.txt that contains the names,age,job title and print the value in this order “name(age) – jobtitle
+                                            Contents.txt file 
+                                            Raj 30 Developer 
+                                            Ram 25 Ops 
+                                            Gokul 21 Intern 
+                                            Sundar 45 CEO 
+                                            Anil 38 SRE 
+
+ Solution: 
+           touch contents.txt 
+           awk '{print $1,"("$2")","- " $3}' contents.txt
+           
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+           
+---> Write an script that will get the company name as arguments(command line arguments) and print their products by parsing the following json file
+                                            {
+                                            “Ibm”: [“RedHat”,”Mainframe”,”IBM cloud”,”RHEL”],
+                                            “google”: [“k8s”,”kaggle”,”firebase”],
+                                            “microsoft”: [“windows”,”azure”,”office365”],
+                                            “amazon”: [“AWS”,”AWS Gov”,”Amplify”],
+                                            “softwareag”: [“webmethods”,”AIRS”,”ADABAS”,”CumIOT”]
+                                            } 
+Solution:
+          a. First create a json file as question.json using 
+                touch question.json and insert the json 
+          b. In js_scripts.sh, It get input from command line and display the products 
+                cat question.json | jq -c ".$1" 
+          c. Run the script file 
+                ./js_scripts.sh amazon 
+                
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------
+                
+---> Create an script that will calculate the sum of prime numbers between 0 to an given number(to be given as an argument) name it child.sh, create another script named 
+parent.sh which check if the child script exists in current dir and if exists change permission to execute for current user and call the child script from the parent
+script passing the number as argument
+
+Solution: Run parent.sh as ./parent.sh
+                                              child.sh
+                                  
+            #!/bin/bash
+            #####################################################################################################
+            #  Author : Aathish R
+            #  Date created : 14-06-2022
+            #  description : sum of prime numbers between 0 to given number
+            #  Date modified: 14-06-2022
+            ######################################################################################################
+
+            n=$1
+            sum=0
+            for (( i=2; i<=$n; i++ ))
+            do
+                c=0
+                for(( j=1; j<=$i; j++ ))
+                do
+                    if(( $i%j == 0))
+                    then
+                        c=$c+1
+                        #echo "$c"
+                    fi
+                done
+                if(( $c == 2 ))
+                then
+                    sum=$((sum + i));
+                fi
+            done
+            echo "$sum"
+            
+                                            parent.sh
+                                            
+            #!/bin/bash
+            #####################################################################################################
+            #  Author : Aathish R
+            #  Date created : 14-06-2022
+            #  description : Check whether child.sh exists and change the permission and call the child.sh
+            #  Date modified: 14-06-2022
+            ######################################################################################################
+
+
+            if [ -f "child.sh" ]
+            then
+                chmod 700 child.sh
+                ./child.sh 30
+            else
+                echo "child.sh not exist in current directory"
+            fi
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Install the apache httpd server(centos preferred), and the home page should say “SoftwareAG”
+
+Install apache using 
+      sudo apt-get install apache2 
+Check the status using
+      sudo service apache2 status 
+Then go to /var/www/html and edit the index.html file to display SOFTWARE AG 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Make the Https server an Linux systemd service and write an script to stop, start and restart the server via systemctl 
+
+                                                      myownservice.sh 
+                                                      
+                                                       while true 
+                                                       do 
+                                                       python3 -m http.server 8080 
+                                                       done 
+                                                       
+                                                       aathish.service(/etc/systemd/system/aathish.service)
+  
+                                                       [service] 
+                                                       ExecStart=/home/aathish/linux_task/myownservice.sh 
+   Start - sudo systemctl start aathish 
+   Stop - sudo systemctl stop aathish 
+   Restart - sudo systemctl restart aathish 
+   Status - sudo systemctl status aathish
+   
+   ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+        
